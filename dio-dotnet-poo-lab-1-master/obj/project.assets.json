@@ -8,32 +8,33 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "/home/eliezer/.nuget/packages/": {},
-    "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "C:\\Users\\6113826\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/eliezer/sandbox/dio/DIO.Bank/DIO.Bank.csproj",
+      "projectUniqueName": "C:\\Users\\6113826\\source\\repos\\App-Transferencia-Bancaria\\dio-dotnet-poo-lab-1-master\\DIO.Bank.csproj",
       "projectName": "DIO.Bank",
-      "projectPath": "/home/eliezer/sandbox/dio/DIO.Bank/DIO.Bank.csproj",
-      "packagesPath": "/home/eliezer/.nuget/packages/",
-      "outputPath": "/home/eliezer/sandbox/dio/DIO.Bank/obj/",
+      "projectPath": "C:\\Users\\6113826\\source\\repos\\App-Transferencia-Bancaria\\dio-dotnet-poo-lab-1-master\\DIO.Bank.csproj",
+      "packagesPath": "C:\\Users\\6113826\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\6113826\\source\\repos\\App-Transferencia-Bancaria\\dio-dotnet-poo-lab-1-master\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "/usr/share/dotnet/sdk/NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "/home/eliezer/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\6113826\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {}
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {},
+        "https://pkgs.dev.azure.com/tr-ggo/_packaging/LegalOne/nuget/v3/index.json": {},
+        "https://pkgs.dev.azure.com/tr-ggo/_packaging/l1-nuget%40Local/nuget/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -45,6 +46,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "imports": [
           "net461",
           "net462",
@@ -55,12 +57,18 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[3.1.22, 3.1.22]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.404/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

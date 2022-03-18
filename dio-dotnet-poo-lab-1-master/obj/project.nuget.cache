@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "4fp4a5O5cwwwcbv/iruEo1QO4dK0VJIKS2oWHwY/JnCWW187HuLZbkz7Z4mR8EoYUlZ0Nrk7wrUSP1uybDeQUw==",
+  "dgSpecHash": "dI2bGRUlZqABZGfrED/xaSco7fPR12Hh53wTH3iL4cSlZmv0W1gAZ1FaImEFWfSMQqLVWSYkWkZX5Ylf2uR9GQ==",
   "success": true,
-  "projectFilePath": "/home/eliezer/sandbox/dio/DIO.Bank/DIO.Bank.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\6113826\\source\\repos\\App-Transferencia-Bancaria\\dio-dotnet-poo-lab-1-master\\DIO.Bank.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\6113826\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.22\\microsoft.netcore.app.host.win-x64.3.1.22.nupkg.sha512"
+  ],
   "logs": []
 }
