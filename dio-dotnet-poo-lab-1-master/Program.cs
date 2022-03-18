@@ -5,29 +5,30 @@ namespace DIO.Bank
 {
 	class Program
 	{
-		static List<Conta> listContas = new List<Conta>();
+		static List<BankAccount> bankAccountList = new List<BankAccount>();
+
 		static void Main(string[] args)
 		{
-			string opcaoUsuario = ObterOpcaoUsuario();
+			string userOption = GetUserOption();
 
-			while (opcaoUsuario.ToUpper() != "X")
+			while (userOption.ToUpper() != "X")
 			{
-				switch (opcaoUsuario)
+				switch (userOption)
 				{
 					case "1":
-						ListarContas();
+						ListAccount();
 						break;
 					case "2":
-						InserirConta();
+						InsertAccount();
 						break;
 					case "3":
-						Transferir();
+						ToTransfer();
 						break;
 					case "4":
-						Sacar();
+						ToWithdraw();
 						break;
 					case "5":
-						Depositar();
+						MakeDeposit();
 						break;
                     case "C":
 						Console.Clear();
@@ -37,109 +38,129 @@ namespace DIO.Bank
 						throw new ArgumentOutOfRangeException();
 				}
 
-				opcaoUsuario = ObterOpcaoUsuario();
+				userOption = GetUserOption();
 			}
 			
-			Console.WriteLine("Obrigado por utilizar nossos serviços.");
+			Console.WriteLine("Thank you for using our services!");
 			Console.ReadLine();
 		}
 
-		private static void Depositar()
+		/// <summary>
+		/// 
+		/// </summary>
+		private static void MakeDeposit()
 		{
-			Console.Write("Digite o número da conta: ");
-			int indiceConta = int.Parse(Console.ReadLine());
+			Console.Write("Enter the bank account number: ");
+			int accountIndex = int.Parse(Console.ReadLine());
 
-			Console.Write("Digite o valor a ser depositado: ");
-			double valorDeposito = double.Parse(Console.ReadLine());
+			Console.Write("Enter the amount to be deposited: ");
+			double depositAmount = double.Parse(Console.ReadLine());
 
-            listContas[indiceConta].Depositar(valorDeposito);
+            bankAccountList[accountIndex].Deposit(depositAmount);
 		}
 
-		private static void Sacar()
+		/// <summary>
+		/// 
+		/// </summary>
+		private static void ToWithdraw()
 		{
 			Console.Write("Digite o número da conta: ");
-			int indiceConta = int.Parse(Console.ReadLine());
+			int accountIndex = int.Parse(Console.ReadLine());
 
 			Console.Write("Digite o valor a ser sacado: ");
-			double valorSaque = double.Parse(Console.ReadLine());
+			double withdrawalAmount = double.Parse(Console.ReadLine());
 
-            listContas[indiceConta].Sacar(valorSaque);
+            bankAccountList[accountIndex].Withdraw(withdrawalAmount);
 		}
 
-		private static void Transferir()
+		/// <summary>
+		/// 
+		/// </summary>
+		private static void ToTransfer()
 		{
-			Console.Write("Digite o número da conta de origem: ");
-			int indiceContaOrigem = int.Parse(Console.ReadLine());
+			Console.Write("Enter the origin account name: ");
+			int originAccountIndex = int.Parse(Console.ReadLine());
 
-            Console.Write("Digite o número da conta de destino: ");
-			int indiceContaDestino = int.Parse(Console.ReadLine());
+            Console.Write("Enter the destination account name: ");
+			int destinationAccountIndex = int.Parse(Console.ReadLine());
 
-			Console.Write("Digite o valor a ser transferido: ");
-			double valorTransferencia = double.Parse(Console.ReadLine());
+			Console.Write("Enter the amount to be transferred: ");
+			double transferAmount = double.Parse(Console.ReadLine());
 
-            listContas[indiceContaOrigem].Transferir(valorTransferencia, listContas[indiceContaDestino]);
+            bankAccountList[originAccountIndex].Tranfer(transferAmount, bankAccountList[destinationAccountIndex]);
 		}
 
-		private static void InserirConta()
+		/// <summary>
+		///Enter a bank account as a record
+		/// </summary>
+		private static void InsertAccount()
 		{
-			Console.WriteLine("Inserir nova conta");
+			Console.WriteLine("Enter a new bank account:");
 
-			Console.Write("Digite 1 para Conta Fisica ou 2 para Juridica: ");
-			int entradaTipoConta = int.Parse(Console.ReadLine());
+			// Resolver essa condição!
+			Console.Write("Enter 'Natural' for natural person or 'Legal' for legal person: ");
+			int inputAccountType = int.Parse(Console.ReadLine());
 
-			Console.Write("Digite o Nome do Cliente: ");
-			string entradaNome = Console.ReadLine();
+			Console.Write("Enter client name: ");
+			string inputName = Console.ReadLine();
 
-			Console.Write("Digite o saldo inicial: ");
-			double entradaSaldo = double.Parse(Console.ReadLine());
+			Console.Write("Enter the opening balance: ");
+			double inputBankBalance = double.Parse(Console.ReadLine());
 
-			Console.Write("Digite o crédito: ");
-			double entradaCredito = double.Parse(Console.ReadLine());
+			Console.Write("Enter bank account credit: ");
+			double inputBankCredit = double.Parse(Console.ReadLine());
 
-			Conta novaConta = new Conta(tipoConta: (TipoConta)entradaTipoConta,
-										saldo: entradaSaldo,
-										credito: entradaCredito,
-										nome: entradaNome);
+			BankAccount newBankAccount = new BankAccount((AccountType)inputAccountType,
+										inputBankBalance,
+										inputBankCredit,
+										inputName);
 
-			listContas.Add(novaConta);
+			bankAccountList.Add(newBankAccount);
 		}
 
-		private static void ListarContas()
+		/// <summary>
+		/// List of registered bank accounts
+		/// </summary>
+		private static void ListAccount()
 		{
-			Console.WriteLine("Listar contas");
+			Console.WriteLine("List bank accounts:");
 
-			if (listContas.Count == 0)
+			if (bankAccountList.Count == 0)
 			{
-				Console.WriteLine("Nenhuma conta cadastrada.");
+				Console.WriteLine("No bank account registered!");
 				return;
 			}
 
-			for (int i = 0; i < listContas.Count; i++)
+			for (int i = 0; i < bankAccountList.Count; i++)
 			{
-				Conta conta = listContas[i];
+				BankAccount account = bankAccountList[i];
 				Console.Write("#{0} - ", i);
-				Console.WriteLine(conta);
+				Console.WriteLine(account);
 			}
 		}
 
-		private static string ObterOpcaoUsuario()
+		/// <summary>
+		/// Get user option
+		/// </summary>
+		/// <returns></returns>
+		private static string GetUserOption()
 		{
 			Console.WriteLine();
-			Console.WriteLine("DIO Bank a seu dispor!!!");
-			Console.WriteLine("Informe a opção desejada:");
+			Console.WriteLine("DIO Bank at your service!!!!");
+			Console.WriteLine("Enter the desired option:");
 
-			Console.WriteLine("1- Listar contas");
-			Console.WriteLine("2- Inserir nova conta");
-			Console.WriteLine("3- Transferir");
-			Console.WriteLine("4- Sacar");
-			Console.WriteLine("5- Depositar");
-            Console.WriteLine("C- Limpar Tela");
-			Console.WriteLine("X- Sair");
+			Console.WriteLine("1- List accounts");
+			Console.WriteLine("2- Insert a new account");
+			Console.WriteLine("3- Transfer an amount");
+			Console.WriteLine("4- Withdraw an amount");
+			Console.WriteLine("5- Make an Deposit");
+            Console.WriteLine("C- Elear the screen");
+			Console.WriteLine("X- Exit");
 			Console.WriteLine();
 
-			string opcaoUsuario = Console.ReadLine().ToUpper();
+			string userOption = Console.ReadLine().ToUpper();
 			Console.WriteLine();
-			return opcaoUsuario;
+			return userOption;
 		}
 	}
 }
