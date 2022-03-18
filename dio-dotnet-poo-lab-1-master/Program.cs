@@ -74,7 +74,7 @@ namespace DIO.Bank
 		}
 
 		/// <summary>
-		/// 
+		/// Deposits the withdrawal amount from the source account in a destination account
 		/// </summary>
 		private static void ToTransfer()
 		{
@@ -91,14 +91,14 @@ namespace DIO.Bank
 		}
 
 		/// <summary>
-		///Enter a bank account as a record
+		/// Enter a bank account as a record
 		/// </summary>
 		private static void InsertAccount()
 		{
 			Console.WriteLine("Enter a new bank account:");
 
 			// Resolver essa condição!
-			Console.Write("Enter 'Natural' for natural person or 'Legal' for legal person: ");
+			Console.Write("Enter '1' for natural person or '2' for legal person: ");
 			int inputAccountType = int.Parse(Console.ReadLine());
 
 			Console.Write("Enter client name: ");
