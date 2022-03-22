@@ -20,21 +20,21 @@ namespace DIO.Bank
 		/// <summary>
 		/// The Bank Credit
 		/// </summary>
-		private double BankCredit { get; set; }
+		public double BankCredit { get; set; }
 
 		/// <summary>
 		/// Name of Bank account of person
 		/// </summary>
 		private string Name { get; set; }
 
-		/// <summary>
-		/// Represents the account bank
-		/// </summary>
-		/// <param name="accountType"></param>
-		/// <param name="bankBalance"></param>
-		/// <param name="bankCredit"></param>
-		/// <param name="name"></param>
-		public BankAccount(AccountType accountType, double bankBalance, double bankCredit, string name)
+        /// <summary>
+        /// Represents the account bank
+        /// </summary>
+        /// <param name="accountType"></param>
+        /// <param name="bankBalance"></param>
+        /// <param name="bankCredit"></param>
+        /// <param name="name"></param>
+        public BankAccount(AccountType accountType, double bankBalance, double bankCredit, string name)
 		{
 			this.AccountType = accountType;
 			this.BankBalance = bankBalance;
@@ -49,7 +49,7 @@ namespace DIO.Bank
 		/// <returns></returns>
 		public bool Withdraw(double withdrawalAmount)
 		{
-            if (this.BankBalance - withdrawalAmount < (this.BankCredit *-1)){
+            if (this.BankBalance - withdrawalAmount < (this.BankCredit * -1)){
                 Console.WriteLine("Insufficient bank balance!");
                 return false;
             }
@@ -78,9 +78,10 @@ namespace DIO.Bank
 		/// <param name="destinationAccount"></param>
 		public void Tranfer(double transferValue, BankAccount destinationAccount)
 		{
-			if (this.Withdraw(transferValue)){
+			if (this.Withdraw(transferValue))
                 destinationAccount.Deposit(transferValue);
-            }
+            else
+				Console.WriteLine("Unable to make the transfer!");
 		}
 
 		/// <summary>
@@ -91,7 +92,7 @@ namespace DIO.Bank
 		{
             string retorno = "";
             retorno += "Account Type " + this.AccountType + " | ";
-            retorno += "Name " + this.Name + " | ";
+            retorno += "Name " + this.Name.ToUpper() + " | ";
             retorno += "Bank Balance " + this.BankBalance + " | ";
             retorno += "Bank credit " + this.BankCredit;
 			return retorno;
