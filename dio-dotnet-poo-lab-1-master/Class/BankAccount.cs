@@ -20,7 +20,7 @@ namespace DIO.Bank
 		/// <summary>
 		/// The Bank Credit
 		/// </summary>
-		public double BankCredit { get; set; }
+		private double BankCredit { get; set; }
 
 		/// <summary>
 		/// Name of Bank account of person
@@ -66,9 +66,16 @@ namespace DIO.Bank
 		/// <param name="depositAmount"></param>
 		public void Deposit(double depositAmount)
 		{
-			this.BankBalance += depositAmount;
+			if (depositAmount > 0 && depositAmount < BankCredit)
+            {
+				this.BankBalance += depositAmount;
 
-            Console.WriteLine("Current bank balance of the account of {0} is {1}", this.Name, this.BankBalance);
+				Console.WriteLine("Current bank balance of the account of {0} is {1}", this.Name, this.BankBalance);
+			}
+            else
+            {
+				Console.WriteLine("Enter a valid deposit amount!");
+            }
 		}
 
 		/// <summary>

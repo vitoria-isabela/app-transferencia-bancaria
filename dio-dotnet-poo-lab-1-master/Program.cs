@@ -57,7 +57,7 @@ namespace DIO.Bank
 			Console.Write("Enter the amount to be deposited: ");
 			double depositAmount = double.Parse(Console.ReadLine());
 
-			if(depositAmount > 0 && accountIndex >= 0 && depositAmount < bankAccountList[accountIndex].BankCredit)
+			if( accountIndex >= 0)
 				bankAccountList[accountIndex].Deposit(depositAmount);
             else
             {
