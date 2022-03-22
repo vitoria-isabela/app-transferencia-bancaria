@@ -46,31 +46,42 @@ namespace DIO.Bank
 		}
 
 		/// <summary>
-		/// 
+		/// Make Deposit on bank account.
 		/// </summary>
 		private static void MakeDeposit()
 		{
+			ListAccount();
 			Console.Write("Enter the bank account number: ");
 			int accountIndex = int.Parse(Console.ReadLine());
 
 			Console.Write("Enter the amount to be deposited: ");
 			double depositAmount = double.Parse(Console.ReadLine());
 
-            bankAccountList[accountIndex].Deposit(depositAmount);
+			if(depositAmount > 0 && accountIndex >= 0 && depositAmount < bankAccountList[accountIndex].BankCredit)
+				bankAccountList[accountIndex].Deposit(depositAmount);
+            else
+            {
+				Console.WriteLine("Enter a valid bank account number and valid deposit amount!");
+				ListAccountByIndex(accountIndex);
+			}
 		}
 
 		/// <summary>
-		/// 
+		/// withdraws if the bank account balance allows.
 		/// </summary>
 		private static void ToWithdraw()
 		{
-			Console.Write("Digite o número da conta: ");
+			ListAccount();
+			Console.Write("Enter the bank account number: ");
 			int accountIndex = int.Parse(Console.ReadLine());
 
-			Console.Write("Digite o valor a ser sacado: ");
+			Console.Write("Enter the amount to be withdrawn: ");
 			double withdrawalAmount = double.Parse(Console.ReadLine());
 
-            bankAccountList[accountIndex].Withdraw(withdrawalAmount);
+			if (withdrawalAmount > 0 && accountIndex >= 0)
+				bankAccountList[accountIndex].Withdraw(withdrawalAmount);
+			else
+				Console.Write("Enter a valid bank account number and withdrawal Amount!");
 		}
 
 		/// <summary>
@@ -78,16 +89,27 @@ namespace DIO.Bank
 		/// </summary>
 		private static void ToTransfer()
 		{
-			Console.Write("Enter the origin account name: ");
+			ListAccount();
+			Console.Write("Enter the origin account number: ");
 			int originAccountIndex = int.Parse(Console.ReadLine());
 
-            Console.Write("Enter the destination account name: ");
+            Console.Write("Enter the destination account number: ");
 			int destinationAccountIndex = int.Parse(Console.ReadLine());
 
 			Console.Write("Enter the amount to be transferred: ");
 			double transferAmount = double.Parse(Console.ReadLine());
 
-            bankAccountList[originAccountIndex].Tranfer(transferAmount, bankAccountList[destinationAccountIndex]);
+			int lenthOfListBankaccount = bankAccountList.Count;
+
+			if(lenthOfListBankaccount < 2)
+            {
+				Console.WriteLine("It is necessary to inform a second account to carry out the bank transfer: ");
+				ListAccount();
+				Console.WriteLine(" ");
+				InsertAccount();
+			}
+			else
+				bankAccountList[originAccountIndex].Tranfer(transferAmount, bankAccountList[destinationAccountIndex]);
 		}
 
 		/// <summary>
@@ -140,13 +162,25 @@ namespace DIO.Bank
 		}
 
 		/// <summary>
+		/// List of registered bank account by index
+		/// </summary>
+		/// <param name="accountIndex"></param>
+		private static void ListAccountByIndex(int accountIndex)
+		{
+			Console.WriteLine("List bank account #{0}:", accountIndex);
+
+			BankAccount account = bankAccountList[accountIndex];
+			Console.WriteLine(account);
+		}
+
+		/// <summary>
 		/// Get user option
 		/// </summary>
 		/// <returns></returns>
 		private static string GetUserOption()
 		{
 			Console.WriteLine();
-			Console.WriteLine("DIO Bank at your service!!!!");
+			Console.WriteLine("DIO Bank at your service!!!");
 			Console.WriteLine("Enter the desired option:");
 
 			Console.WriteLine("1- List accounts");
@@ -154,7 +188,7 @@ namespace DIO.Bank
 			Console.WriteLine("3- Transfer an amount");
 			Console.WriteLine("4- Withdraw an amount");
 			Console.WriteLine("5- Make an Deposit");
-            Console.WriteLine("C- Elear the screen");
+            Console.WriteLine("C- Clear the screen");
 			Console.WriteLine("X- Exit");
 			Console.WriteLine();
 
